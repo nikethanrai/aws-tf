@@ -20,7 +20,7 @@ resource "aws_launch_template" "runner" {
       name = aws_iam_instance_profile.runner.name
     }
     user_data = base64encode(templatefile("${path.module}/templates/boot.sh.tpl", {
-        queue_url = aws_sqs_queue.jobs.queue_url
+        queue_url = aws_sqs_queue.jobs.url
         region = data.aws_region.current.name
     }))
   
