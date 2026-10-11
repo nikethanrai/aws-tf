@@ -33,11 +33,17 @@ resource "aws_autoscaling_group" "runner" {
     max_size = var.max_size
     desired_capacity = var.desired_capacity
     health_check_type = "EC2"
+    enabled_metrics = ["GroupInServiceInstances"]
+    metrics_granularity = "1Minute"
 
     launch_template {
       id = aws_launch_template.runner.id
       version = "$Latest"
     }
+
+lifecycle {
+  ignore_changes = [ desired_capacity ]
+}
     tag {
       key = "Name"
       value = "${var.name_prefix}-runner"
