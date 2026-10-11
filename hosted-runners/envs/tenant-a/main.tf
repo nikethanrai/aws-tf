@@ -17,3 +17,9 @@ provider "aws" {
   region = "ap-southeast-2"
 
 }
+
+module "network" {
+    source = "../../modules/network"
+    name_prefix = "tenant-a"
+  
+}
