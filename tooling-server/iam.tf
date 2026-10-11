@@ -25,6 +25,14 @@ resource "aws_iam_role_policy_attachment" "ssm_core" {
 
 }
 
+resource "aws_iam_role_policy_attachment" "admin" {
+  role       = aws_iam_role.tooling_host.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+
+}
+
+
+
 resource "aws_iam_instance_profile" "tooling_host" {
   name = "tooling_host_profile"
   role = aws_iam_role.tooling_host.name
