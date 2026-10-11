@@ -23,3 +23,10 @@ module "network" {
     name_prefix = "tenant-a"
   
 }
+
+module "runner" {
+  source = "../../modules/runner"
+  name_prefix = "tenant-a"
+  private_subnet_id = module.network.private_subnet_id
+  
+}
